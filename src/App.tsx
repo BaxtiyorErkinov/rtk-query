@@ -1,10 +1,16 @@
 import React from 'react';
+import MainComponent from './components/MainComponent';
+import PostsComponent from './components/PostsComponent';
 import { useAppSelector } from './hooks/redux';
+import { postService } from './services/postService';
 
 const App = () => {
-  const { Posts } = useAppSelector((state) => state);
-  console.log(Posts);
-  return <div></div>;
+  return (
+    <div>
+      <PostsComponent />
+      <MainComponent />
+    </div>
+  );
 };
 
 export default App;
