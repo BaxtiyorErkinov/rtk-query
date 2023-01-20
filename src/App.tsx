@@ -1,16 +1,14 @@
 import React from 'react';
-import MainComponent from './components/MainComponent';
-import PostsComponent from './components/PostsComponent';
+import { useSelector } from 'react-redux';
 import { useAppSelector } from './hooks/redux';
-import { postService } from './services/postService';
+import { useGetAllTodosQuery } from './services/todos.service';
+import { RootState } from './store';
 
 const App = () => {
-  return (
-    <div>
-      <PostsComponent />
-      <MainComponent />
-    </div>
-  );
+  useGetAllTodosQuery('');
+  const state = useSelector((state) => state);
+  console.log(state);
+  return <div></div>;
 };
 
 export default App;

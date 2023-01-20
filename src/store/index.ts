@@ -1,18 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import Posts from './Slices/Posts';
-import { postService } from '../services/postService';
+import { todosApi } from '../services/todos.service';
+import todosSlice from './Slices/Todos.slice';
 
 const rootReducer = combineReducers({
-  Posts,
-  allPosts: postService.reducer,
+  todos: todosSlice,
+  [todosApi.reducerPath]: todosApi.reducer,
 });
 
-export const setupStore = () => {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(postService.middleware),
-  });
-};
+export const setupStore = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(todosApi.middleware),
+});
 
-export type RootState = ReturnType<typeof setupStore>;
+export type RootState = ReturnType<typeof setupStore.getState>;
+export type AppDispatch = typeof setupStore.dispatch;

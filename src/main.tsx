@@ -5,10 +5,8 @@ import App from './App';
 import './index.css';
 import { setupStore } from './store';
 
-const mainStore = setupStore();
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={mainStore}>
+  <Provider store={setupStore}>
     <App />
   </Provider>,
 );
